@@ -8,4 +8,6 @@ FirstRoutes::Application.routes.draw do
   get 'users/:id/edit' => 'users#edit'
   put 'users/:id' => 'users#update'
   delete 'users/:id' => 'users#destroy'
+
+  resources :contacts, :only => [:index, :create, :show, :update, :destroy]
 end

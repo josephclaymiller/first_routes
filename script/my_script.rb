@@ -1,7 +1,7 @@
 require 'addressable/uri'
 require 'rest-client'
 
-def do_get
+def do_get_user
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
@@ -12,7 +12,7 @@ def do_get
   puts RestClient.get(url)
 end
 
-def do_post
+def do_post_user
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
@@ -24,7 +24,7 @@ def do_post
   puts RestClient.post(url, user_data)
 end
 
-def do_nested_get
+def do_nested_get_user
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
@@ -41,7 +41,7 @@ def do_nested_get
   puts RestClient.get(url)
 end
 
-def do_nested_post
+def do_nested_post_user
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
@@ -59,7 +59,7 @@ def do_nested_post
   RestClient.post(url, user_data)
 end
 
-def do_show
+def do_show_user
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
@@ -69,7 +69,7 @@ def do_show
   RestClient.get(url)
 end
 
-def do_destroy
+def do_destroy_user
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
@@ -79,7 +79,7 @@ def do_destroy
   RestClient.delete(url)
 end
 
-def do_update
+def do_update_user
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
@@ -92,4 +92,67 @@ def do_update
 end
 
 
-p do_update
+# ----- Contact ------
+def do_get_contact
+  url = Addressable::URI.new(
+    scheme: 'http',
+    host: 'localhost',
+    port: 3000,
+    path: '/contacts.html'
+  ).to_s
+
+  puts RestClient.get(url)
+end
+
+def do_post_contact
+  url = Addressable::URI.new(
+    scheme: 'http',
+    host: 'localhost',
+    port: 3000,
+    path: '/contacts'
+  ).to_s
+  user_data = {:contact => { :name => "Bob",
+                             :email => "example@example.com",
+                             :user_id => 2
+                             }
+                           }
+  puts RestClient.post(url, user_data)
+end
+
+def do_show_contact
+  url = Addressable::URI.new(
+    scheme: 'http',
+    host: 'localhost',
+    port: 3000,
+    path: '/contacts/1'
+  ).to_s
+  RestClient.get(url)
+end
+
+def do_update_contact
+  url = Addressable::URI.new(
+    scheme: 'http',
+    host: 'localhost',
+    port: 3000,
+    path: '/contacts/1'
+  ).to_s
+  user_data = {:user => {
+      :name =>"Bobby",
+      :email => "example@example.com",
+      :user_id => 2
+    }
+  }
+  puts RestClient.put(url, user_data)
+end
+
+def do_destroy_contact
+  url = Addressable::URI.new(
+    scheme: 'http',
+    host: 'localhost',
+    port: 3000,
+    path: '/contacts/1'
+  ).to_s
+  RestClient.delete(url)
+end
+
+p do_destroy_contact

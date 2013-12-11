@@ -155,4 +155,28 @@ def do_destroy_contact
   RestClient.delete(url)
 end
 
-p do_destroy_contact
+def do_post_contact_share
+  url = Addressable::URI.new(
+    scheme: 'http',
+    host: 'localhost',
+    port: 3000,
+    path: '/contact_shares'
+  ).to_s
+  user_data = {:contact_share => { :contact_id => 1,
+                             :user_id => 3
+                             }
+                           }
+  RestClient.post(url, user_data)
+end
+
+def do_destroy_contact_share
+  url = Addressable::URI.new(
+    scheme: 'http',
+    host: 'localhost',
+    port: 3000,
+    path: '/contact_shares/1'
+  ).to_s
+  RestClient.delete(url)
+end
+
+p do_destroy_contact_share

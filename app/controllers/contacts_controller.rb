@@ -1,7 +1,6 @@
 class ContactsController < ApplicationController
   def index
-    contacts = Contact.all
-    render :json => contacts
+    render :json => Contact.contacts_for_user_id(params[:user_id])
   end
 
   def create
